@@ -4,8 +4,10 @@ const Role = require('../models/Role');
 const Department = require('../models/Department');
 const Programme = require('../models/Programme');
 
+const JWT_SECRET = process.env.JWT_SECRET || 'your_super_secret_jwt_key_here';
+
 const generateToken = (id) =>
-  jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE || '7d' });
+  jwt.sign({ id }, JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE || '7d' });
 
 // POST /api/auth/login
 exports.login = async (req, res) => {
